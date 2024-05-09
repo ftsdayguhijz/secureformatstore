@@ -1,11 +1,10 @@
-function reverseList(head) {
-  let prev = null;
-  let curr = head;
-  while (curr) {
-    const next = curr.next;
-    curr.next = prev;
-    prev = curr;
-    curr = next;
-  }
-  return prev;
-}
+const pullAtValue = (arr, pullArr) => {
+  let removed = [],
+    pushToRemove = arr.forEach((v, i) =>
+      pullArr.includes(v) ? removed.push(v) : v,
+    ),
+    mutateTo = arr.filter((v, i) => !pullArr.includes(v));
+  arr.length = 0;
+  mutateTo.forEach((v) => arr.push(v));
+  return removed;
+};
